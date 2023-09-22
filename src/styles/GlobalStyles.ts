@@ -54,7 +54,8 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   input, textarea, select {
-    padding: 0.3rem;
+    padding: 0.6rem 0.5rem;
+    box-sizing: border-box;
     width: 100%;
     background: none;
     border: 1px solid ${({ theme }) => theme.secondary};
