@@ -4,7 +4,7 @@ export const Box = styled.div`
   position: relative;
   padding: 1rem;
   background: ${({ theme }) => theme.panel};
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
   margin-bottom: 1rem;
   font-size: 1rem;
 
@@ -193,10 +193,10 @@ export const DiceBox = styled.div`
 export const ThemeButton = styled.button`
   background: ${({ theme }) => theme.background};
   color: ${({ theme }) => theme.primary};
-  border: 1px solid ${({ theme }) => theme.mid};
+  border: 1px dashed ${({ theme }) => theme.mid};
   cursor: pointer;
   padding: 0.5rem 1rem;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
   font-size: 0.8rem;
   text-decoration: none;
   line-height: 1.2rem;

@@ -25,7 +25,7 @@ const IntersectingLabel = styled.label`
   transform: translateX(-50%);
   padding: 0 0.5em;
   z-index: 10;
-  background-color: white;
+  background: ${({ theme }) => theme.background};
 `;
 
 const InputWrapper = styled.div`
@@ -41,7 +41,7 @@ const ModifierBox = styled.div`
   transform: translateX(-50%);
   padding: 0 0.5em;
   z-index: 10;
-  background-color: white;
+  background: ${({ theme }) => theme.background};
   border: 1px solid ${({ theme }) => theme.secondary};
   width: 2em;
   text-align: center;

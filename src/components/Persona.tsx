@@ -10,7 +10,7 @@ const IntersectingLabel = styled.label`
   left: 0.2rem;
   padding: 0 0.5em;
   z-index: 10;
-  background-color: white;
+  background: ${({ theme }) => theme.background};
 `;
 
 const Row = styled.div`
@@ -36,7 +36,7 @@ export const Persona: React.FC = () => {
         <Row>
           <InputWrapper>
             <IntersectingLabel htmlFor="name">NAME</IntersectingLabel>
-            <input type="text" id="name" />
+            <input autoComplete="off" type="text" id="name" />
           </InputWrapper>
           <InputWrapper>
             <IntersectingLabel htmlFor="race">RACE</IntersectingLabel>
@@ -44,13 +44,13 @@ export const Persona: React.FC = () => {
           </InputWrapper>
           <InputWrapper>
             <IntersectingLabel htmlFor="background">BACKGROUND</IntersectingLabel>
-            <input type="background" id="class" />
+            <input type="background" id="background" />
           </InputWrapper>
         </Row>
         <Row>
           <InputWrapper>
             <IntersectingLabel htmlFor="class">CLASS</IntersectingLabel>
-            <input type="class" id="name" />
+            <input type="class" id="class" />
           </InputWrapper>
           <InputWrapper>
             <IntersectingLabel htmlFor="subclass">SUBCLASS</IntersectingLabel>
