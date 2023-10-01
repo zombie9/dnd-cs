@@ -55,7 +55,7 @@ const RowWrapper = styled.div`
 
 const ABILITIES = ['strength', 'intelligence', 'dexterity', 'wisdom', 'constitution', 'charisma'];
 const scores = [8, 10, 18, 14, 16, 20];
-const HEALTH = ['armour class', 'hit points'];
+const HEALTH = ['armour class', 'hit points', 'proficiency'];
 
 export const Abilities: React.FC = () => {
   const abilityRef = useRef<HTMLInputElement>(null);

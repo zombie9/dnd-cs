@@ -53,7 +53,7 @@ export const GlobalStyles = createGlobalStyle`
     }
   }
 
-  input, textarea, select {
+  input[type=text], textarea, select {
     padding: 0.6rem 0.5rem;
     box-sizing: border-box;
     width: 100%;
@@ -73,9 +73,33 @@ export const GlobalStyles = createGlobalStyle`
     }
   }
 
+  input[type=checkbox] {
+    outline: none;
+    content: none;
+    appearance: none;
+    margin: 0;
+
+    &:before {
+      content: "";
+      display: block;
+      width: 0.5rem;
+      height: 0.5rem;
+      border: 1px solid ${({ theme }) => theme.mid};
+      border-radius: 50%;
+    }
+
+    &:checked:before {
+      background-color: ${({ theme }) => theme.mid};
+    }
+  }
+
   textarea {
-    resize: vertical;
+    position: relative;
+    resize: none;
     white-space: pre-wrap;
+    height: 100%;
+    padding-top: 1.3rem;
+    font-size: 0.9rem;
   }
 
   svg {

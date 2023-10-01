@@ -6,6 +6,7 @@ import { ThemeType } from '../types';
 import { Header } from './Header';
 import { Persona } from './Persona';
 import { Abilities } from './Abilities';
+import { Skills } from './Skills';
 
 const StyledContainer = styled.div`
   margin: 0 auto;
@@ -20,6 +21,7 @@ export const Container: React.FC<ThemeType> = ({ theme, toggleTheme }) => {
       <StyledContainer>
         <Persona />
         <Abilities />
+        <Skills />
       </StyledContainer>
     </>
   );

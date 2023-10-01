@@ -29,10 +29,16 @@ const InputWrapper = styled.div`
   width: 100%;
 `;
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+`;
+
 export const Persona: React.FC = () => {
   return (
-    <>
-      <Box>
+    <Wrapper>
+      <Box style={{ flexGrow: '1' }}>
         <Row>
           <InputWrapper>
             <IntersectingLabel htmlFor="name">NAME</IntersectingLabel>
@@ -43,25 +49,39 @@ export const Persona: React.FC = () => {
             <input type="text" id="race" />
           </InputWrapper>
           <InputWrapper>
-            <IntersectingLabel htmlFor="background">BACKGROUND</IntersectingLabel>
-            <input type="background" id="background" />
+            <IntersectingLabel htmlFor="alignment">ALIGNMENT</IntersectingLabel>
+            <input type="text" id="alignment" />
           </InputWrapper>
         </Row>
         <Row>
           <InputWrapper>
             <IntersectingLabel htmlFor="class">CLASS</IntersectingLabel>
-            <input type="class" id="class" />
+            <input type="text" id="class" />
           </InputWrapper>
           <InputWrapper>
             <IntersectingLabel htmlFor="subclass">SUBCLASS</IntersectingLabel>
             <input type="text" id="subclass" />
           </InputWrapper>
           <InputWrapper>
-            <IntersectingLabel htmlFor="alignment">ALIGNMENT</IntersectingLabel>
-            <input type="text" id="alignment" />
+            <IntersectingLabel htmlFor="background">BACKGROUND</IntersectingLabel>
+            <input type="text" id="background" />
           </InputWrapper>
         </Row>
       </Box>
-    </>
+      <Box style={{ maxWidth: '8rem' }}>
+        <Row>
+          <InputWrapper>
+            <IntersectingLabel htmlFor="experience">LEVEL</IntersectingLabel>
+            <input type="text" id="experience" />
+          </InputWrapper>
+        </Row>
+        <Row>
+          <InputWrapper>
+            <IntersectingLabel htmlFor="experience">EXPERIENCE</IntersectingLabel>
+            <input type="text" id="experience" />
+          </InputWrapper>
+        </Row>
+      </Box>
+    </Wrapper>
   );
 };
