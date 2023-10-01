@@ -25,7 +25,7 @@ const IntersectingLabel = styled.label`
   transform: translateX(-50%);
   padding: 0 0.5em;
   z-index: 10;
-  background: ${({ theme }) => theme.background};
+  background: ${({ theme }) => theme.panel};
 `;
 
 const InputWrapper = styled.div`

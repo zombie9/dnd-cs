@@ -10,7 +10,7 @@ const IntersectingLabel = styled.label`
   left: 0.2rem;
   padding: 0 0.5em;
   z-index: 10;
-  background: ${({ theme }) => theme.background};
+  background: ${({ theme }) => theme.panel};
 `;
 
 const Row = styled.div`
