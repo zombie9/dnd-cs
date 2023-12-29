@@ -4,6 +4,8 @@ import { Box } from '../styles/sharedStyles';
 
 import { skills } from '../models/skills';
 import styled from 'styled-components';
+import { calculateModifier } from '../utils/mapAbilityModifiers';
+import { ABILITIES } from '../models/abilities';
 
 const SkillRow = styled.div`
   display: flex;
@@ -26,7 +28,9 @@ const SkillModifierBox = styled.div`
   border: 1px solid ${({ theme }) => theme.secondary};
   margin: 0 0.75rem;
   padding: 0.2rem;
-  /* background-color: ${({ theme }) => theme.background}; */
+  min-width: 1rem;
+  text-align: center;
+  background-color: ${({ theme }) => theme.background};
 `;
 
 const Grid = styled.div`
@@ -56,13 +60,23 @@ export const Skills: React.FC = () => {
     <Grid>
       <Box style={{ gridRow: '1 / span 2' }}>
         {skills.map((skill, index) => {
+          const typedAbility = skill.ability as keyof typeof ABILITIES;
+          const abilityScore = ABILITIES[typedAbility];
+          const proficientSkill = skill.proficient;
           return (
             <SkillRow key={index}>
-              <input type="checkbox" id={skill.name} name={skill.name} />
-              <SkillModifierBox>+4</SkillModifierBox>
+              <input
+                type="checkbox"
+                id={skill.name}
+                name={skill.name}
+                defaultChecked={proficientSkill}
+              />
+              <SkillModifierBox>
+                {calculateModifier(abilityScore, skill.proficient)}
+              </SkillModifierBox>
               <SkillLabel htmlFor={skill.name}>
                 {skill.name}
-                <SkillAbility>{`(${skill.ability})`}</SkillAbility>
+                <SkillAbility>{`(${skill.ability.slice(0, 3)})`}</SkillAbility>
               </SkillLabel>
             </SkillRow>
           );
@@ -71,7 +85,7 @@ export const Skills: React.FC = () => {
       <Box>
         <InputWrapper>
           <textarea />
-          <IntersectingLabel>PERSONALITY TRAITS</IntersectingLabel>
+          <IntersectingLabel>DESCRIPTION</IntersectingLabel>
         </InputWrapper>
       </Box>
       <Box>
@@ -83,13 +97,13 @@ export const Skills: React.FC = () => {
       <Box>
         <InputWrapper>
           <textarea />
-          <IntersectingLabel>PERSONALITY TRAITS</IntersectingLabel>
+          <IntersectingLabel>RACIAL TRAITS</IntersectingLabel>
         </InputWrapper>
       </Box>
       <Box>
         <InputWrapper>
           <textarea />
-          <IntersectingLabel>PERSONALITY TRAITS</IntersectingLabel>
+          <IntersectingLabel>CLASS ABILITIES</IntersectingLabel>
         </InputWrapper>
       </Box>
     </Grid>

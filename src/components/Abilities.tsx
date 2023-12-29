@@ -1,9 +1,10 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 
-import { mapAbilityModifiers } from '../utils/mapAbilityModifiers';
+import { calculateModifier } from '../utils/mapAbilityModifiers';
 
 import { Box } from '../styles/sharedStyles';
+import { ABILITIES } from '../models/abilities';
 
 const Row = styled.div`
   display: flex;
@@ -53,26 +54,20 @@ const RowWrapper = styled.div`
   gap: 1rem;
 `;
 
-const ABILITIES = ['strength', 'intelligence', 'dexterity', 'wisdom', 'constitution', 'charisma'];
-const scores = [8, 10, 18, 14, 16, 20];
+// const ABILITIES = ['strength', 'intelligence', 'dexterity', 'wisdom', 'constitution', 'charisma'];
+// const scores = [8, 10, 18, 14, 16, 20];
 const HEALTH = ['armour class', 'hit points', 'proficiency'];
 
 export const Abilities: React.FC = () => {
   const abilityRef = useRef<HTMLInputElement>(null);
-
-  const calculateModifier = (ability: number) => {
-    if (ability !== null) {
-      const modifier = mapAbilityModifiers(ability);
-      return `${modifier > 0 ? '+' : ''}${modifier}`;
-    }
-    return 0;
-  };
+  const abilities = Object.keys(ABILITIES);
 
   return (
     <RowWrapper>
       <Box>
         <Row>
-          {ABILITIES.map((ability, index) => {
+          {abilities.map((ability, index) => {
+            const typedAbility = ability as keyof typeof ABILITIES;
             return (
               <InputWrapper key={`${ability}-${index}`}>
                 <IntersectingLabel htmlFor={ability}>
@@ -83,9 +78,9 @@ export const Abilities: React.FC = () => {
                   type="text"
                   id={ability}
                   ref={abilityRef}
-                  defaultValue={scores[index]}
+                  defaultValue={ABILITIES[typedAbility]}
                 />
-                <ModifierBox>{calculateModifier(scores[index])}</ModifierBox>
+                <ModifierBox>{calculateModifier(ABILITIES[typedAbility])}</ModifierBox>
               </InputWrapper>
             );
           })}

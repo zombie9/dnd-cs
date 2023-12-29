@@ -1,92 +1,92 @@
 export const skills = [
   {
     name: 'acrobatics',
-    ability: 'dex',
+    ability: 'dexterity',
     proficient: false
   },
   {
     name: 'animal handling',
-    ability: 'wis',
+    ability: 'wisdom',
     proficient: false
   },
   {
     name: 'arcane',
-    ability: 'int',
+    ability: 'intelligence',
     proficient: false
   },
   {
     name: 'athletics',
-    ability: 'str',
-    proficient: false
+    ability: 'strength',
+    proficient: true
   },
   {
     name: 'deception',
-    ability: 'cha',
+    ability: 'charisma',
     proficient: false
   },
   {
     name: 'history',
-    ability: 'int',
-    proficient: false
+    ability: 'intelligence',
+    proficient: true
   },
   {
     name: 'insight',
-    ability: 'wis',
+    ability: 'wisdom',
     proficient: false
   },
   {
     name: 'intimidation',
-    ability: 'cha',
-    proficient: false
+    ability: 'charisma',
+    proficient: true
   },
   {
     name: 'investigation',
-    ability: 'int',
+    ability: 'intelligence',
     proficient: false
   },
   {
     name: 'medicine',
-    ability: 'wis',
+    ability: 'wisdom',
     proficient: false
   },
   {
     name: 'nature',
-    ability: 'int',
+    ability: 'intelligence',
     proficient: false
   },
   {
     name: 'perception',
-    ability: 'wis',
-    proficient: false
+    ability: 'wisdom',
+    proficient: true
   },
   {
     name: 'performance',
-    ability: 'cha',
+    ability: 'charisma',
     proficient: false
   },
   {
     name: 'persuasion',
-    ability: 'cha',
+    ability: 'charisma',
     proficient: false
   },
   {
     name: 'religion',
-    ability: 'wis',
+    ability: 'wisdom',
     proficient: false
   },
   {
     name: 'sleight of hand',
-    ability: 'dex',
+    ability: 'dexterity',
     proficient: false
   },
   {
     name: 'stealth',
-    ability: 'dex',
+    ability: 'dexterity',
     proficient: false
   },
   {
     name: 'survival',
-    ability: 'con',
+    ability: 'constitution',
     proficient: false
   }
 ];
