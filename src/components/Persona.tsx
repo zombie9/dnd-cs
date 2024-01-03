@@ -72,7 +72,7 @@ export const Persona: React.FC = () => {
         <Row>
           <InputWrapper>
             <IntersectingLabel htmlFor="experience">LEVEL</IntersectingLabel>
-            <input type="text" id="experience" />
+            <input type="text" id="level" />
           </InputWrapper>
         </Row>
         <Row>

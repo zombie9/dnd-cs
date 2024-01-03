@@ -1,4 +1,1 @@
-export type ThemeType = {
-  theme: string;
-  toggleTheme: () => void;
-};
+export type { ThemeType } from './theme';
