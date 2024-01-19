@@ -5,6 +5,7 @@ import { calculateModifier } from '../utils/mapAbilityModifiers';
 
 import { Box } from '../styles/sharedStyles';
 import { ABILITIES } from '../models/abilities';
+import { STATS } from '../models/stats';
 
 const Row = styled.div`
   display: flex;
@@ -54,31 +55,28 @@ const RowWrapper = styled.div`
   gap: 1rem;
 `;
 
-const HEALTH = ['armour class', 'hit points', 'proficiency'];
-
 export const Abilities: React.FC = () => {
   const abilityRef = useRef<HTMLInputElement>(null);
-  const abilities = Object.keys(ABILITIES);
+  const statRef = useRef<HTMLInputElement>(null);
 
   return (
     <RowWrapper>
       <Box>
         <Row>
-          {abilities.map((ability, index) => {
-            const typedAbility = ability as keyof typeof ABILITIES;
+          {ABILITIES.map((abilityObject, index) => {
             return (
-              <InputWrapper key={`${ability}-${index}`}>
-                <IntersectingLabel htmlFor={ability}>
-                  {ability.toLocaleUpperCase()}
+              <InputWrapper key={`${abilityObject.ability}-${index}`}>
+                <IntersectingLabel htmlFor={abilityObject.ability}>
+                  {abilityObject.ability.toLocaleUpperCase()}
                 </IntersectingLabel>
                 <input
                   style={{ textAlign: 'center', height: '4em' }}
                   type="text"
-                  id={ability}
+                  id={abilityObject.ability}
                   ref={abilityRef}
-                  defaultValue={ABILITIES[typedAbility]}
+                  defaultValue={abilityObject.score}
                 />
-                <ModifierBox>{calculateModifier(ABILITIES[typedAbility])}</ModifierBox>
+                <ModifierBox>{calculateModifier(abilityObject.score)}</ModifierBox>
               </InputWrapper>
             );
           })}
@@ -86,13 +84,19 @@ export const Abilities: React.FC = () => {
       </Box>
       <Box>
         <Row>
-          {HEALTH.map((ability, index) => {
+          {STATS.map((statObject, index) => {
             return (
-              <InputWrapper key={`${ability}-${index}`}>
-                <IntersectingLabel style={{ whiteSpace: 'nowrap' }} htmlFor={ability}>
-                  {ability.toLocaleUpperCase()}
+              <InputWrapper key={`${statObject.stat}-${index}`}>
+                <IntersectingLabel style={{ whiteSpace: 'nowrap' }} htmlFor={statObject.stat}>
+                  {statObject.stat.toLocaleUpperCase()}
                 </IntersectingLabel>
-                <input style={{ textAlign: 'center', height: '4em' }} type="text" id={ability} />
+                <input
+                  style={{ textAlign: 'center', height: '4em' }}
+                  type="text"
+                  id={statObject.stat}
+                  ref={statRef}
+                  defaultValue={statObject.value}
+                />
               </InputWrapper>
             );
           })}

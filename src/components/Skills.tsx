@@ -60,8 +60,9 @@ export const Skills: React.FC = () => {
     <Grid>
       <Box style={{ gridRow: '1 / span 2' }}>
         {SKILLS.map((skill, index) => {
-          const typedAbility = skill.ability as keyof typeof ABILITIES;
-          const abilityScore = ABILITIES[typedAbility];
+          const ability = ABILITIES.find(
+            (abilityObject) => abilityObject.ability === skill.ability
+          );
           const proficientSkill = skill.proficient;
           return (
             <SkillRow key={index}>
@@ -72,7 +73,7 @@ export const Skills: React.FC = () => {
                 defaultChecked={proficientSkill}
               />
               <SkillModifierBox>
-                {calculateModifier(abilityScore, skill.proficient)}
+                {calculateModifier(ability!.score, skill.proficient)}
               </SkillModifierBox>
               <SkillLabel htmlFor={skill.name}>
                 {skill.name}

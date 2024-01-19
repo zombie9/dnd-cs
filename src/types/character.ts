@@ -9,21 +9,6 @@ export type PersonaType = {
   experience: string;
 };
 
-export type StatsType = [
-  {
-    stat: 'hit points';
-    value: number;
-  },
-  {
-    stat: 'armour class';
-    value: number;
-  },
-  {
-    stat: 'proficiency';
-    value: number;
-  }
-];
-
 export type AbilitiesType = [
   {
     ability: 'strength';
@@ -48,6 +33,21 @@ export type AbilitiesType = [
   {
     ability: 'charisma';
     score: number;
+  }
+];
+
+export type StatsType = [
+  {
+    stat: 'hit points';
+    value: number;
+  },
+  {
+    stat: 'armour class';
+    value: number;
+  },
+  {
+    stat: 'proficiency';
+    value: number;
   }
 ];
 
