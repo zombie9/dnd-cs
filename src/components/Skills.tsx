@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Box } from '../styles/sharedStyles';
 
-import { skills } from '../models/skills';
+import { SKILLS } from '../models/skills';
 import styled from 'styled-components';
 import { calculateModifier } from '../utils/mapAbilityModifiers';
 import { ABILITIES } from '../models/abilities';
@@ -59,7 +59,7 @@ export const Skills: React.FC = () => {
   return (
     <Grid>
       <Box style={{ gridRow: '1 / span 2' }}>
-        {skills.map((skill, index) => {
+        {SKILLS.map((skill, index) => {
           const typedAbility = skill.ability as keyof typeof ABILITIES;
           const abilityScore = ABILITIES[typedAbility];
           const proficientSkill = skill.proficient;
