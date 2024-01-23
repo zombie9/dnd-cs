@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
+import { CharacterContext } from '../context/context';
 
 import { Box } from '../styles/sharedStyles';
 
@@ -36,6 +37,22 @@ const Wrapper = styled.div`
 `;
 
 export const Persona: React.FC = () => {
+  const { character, setCharacter } = useContext(CharacterContext);
+  console.log('character', character);
+  console.log('setCharacter', setCharacter);
+
+  useEffect(() => {
+    const newChar = {
+      ...character,
+      persona: {
+        ...character.persona,
+        name: 'NIMRYTH'
+      }
+    };
+    setCharacter(newChar);
+  }, []);
+
+  console.log('CHAR2', character);
   return (
     <Wrapper>
       <Box style={{ flexGrow: '1' }}>

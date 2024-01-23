@@ -1,3 +1,15 @@
-import { createContext } from 'react';
+import { createContext, Dispatch, SetStateAction } from 'react';
+import { sampleCharacter } from '../models/character';
+import { CharacterType } from '../types';
 
-export const Context = createContext(null);
+type CharacterContextType = {
+  character: CharacterType;
+  setCharacter: Dispatch<SetStateAction<CharacterType>>;
+};
+
+const characterContextDefaultValue = {
+  character: sampleCharacter,
+  setCharacter: () => {}
+};
+
+export const CharacterContext = createContext<CharacterContextType>(characterContextDefaultValue);

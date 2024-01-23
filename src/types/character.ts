@@ -53,92 +53,92 @@ export type StatsType = [
 
 export type SkillsType = [
   {
-    name: 'acrobatics';
+    skill: 'acrobatics';
     ability: 'dexterity';
     proficient: boolean;
   },
   {
-    name: 'animal handling';
+    skill: 'animal handling';
     ability: 'wisdom';
     proficient: boolean;
   },
   {
-    name: 'arcane';
+    skill: 'arcane';
     ability: 'intelligence';
     proficient: boolean;
   },
   {
-    name: 'athletics';
+    skill: 'athletics';
     ability: 'strength';
     proficient: boolean;
   },
   {
-    name: 'deception';
+    skill: 'deception';
     ability: 'charisma';
     proficient: boolean;
   },
   {
-    name: 'history';
+    skill: 'history';
     ability: 'intelligence';
     proficient: boolean;
   },
   {
-    name: 'insight';
+    skill: 'insight';
     ability: 'wisdom';
     proficient: boolean;
   },
   {
-    name: 'intimidation';
+    skill: 'intimidation';
     ability: 'charisma';
     proficient: boolean;
   },
   {
-    name: 'investigation';
+    skill: 'investigation';
     ability: 'intelligence';
     proficient: boolean;
   },
   {
-    name: 'medicine';
+    skill: 'medicine';
     ability: 'wisdom';
     proficient: boolean;
   },
   {
-    name: 'nature';
+    skill: 'nature';
     ability: 'intelligence';
     proficient: boolean;
   },
   {
-    name: 'perception';
+    skill: 'perception';
     ability: 'wisdom';
     proficient: boolean;
   },
   {
-    name: 'performance';
+    skill: 'performance';
     ability: 'charisma';
     proficient: boolean;
   },
   {
-    name: 'persuasion';
+    skill: 'persuasion';
     ability: 'charisma';
     proficient: boolean;
   },
   {
-    name: 'religion';
+    skill: 'religion';
     ability: 'wisdom';
     proficient: boolean;
   },
   {
-    name: 'sleight of hand';
+    skill: 'sleight of hand';
     ability: 'dexterity';
     proficient: boolean;
   },
   {
-    name: 'stealth';
+    skill: 'stealth';
     ability: 'dexterity';
     proficient: boolean;
   },
   {
-    name: 'survival';
+    skill: 'survival';
     ability: 'constitution';
     proficient: boolean;
   }

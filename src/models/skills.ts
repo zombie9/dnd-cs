@@ -2,92 +2,92 @@ import { SkillsType } from '../types/character';
 
 export const SKILLS: SkillsType = [
   {
-    name: 'acrobatics',
+    skill: 'acrobatics',
     ability: 'dexterity',
     proficient: false
   },
   {
-    name: 'animal handling',
+    skill: 'animal handling',
     ability: 'wisdom',
     proficient: false
   },
   {
-    name: 'arcane',
+    skill: 'arcane',
     ability: 'intelligence',
     proficient: false
   },
   {
-    name: 'athletics',
+    skill: 'athletics',
     ability: 'strength',
     proficient: true
   },
   {
-    name: 'deception',
+    skill: 'deception',
     ability: 'charisma',
     proficient: false
   },
   {
-    name: 'history',
+    skill: 'history',
     ability: 'intelligence',
     proficient: true
   },
   {
-    name: 'insight',
+    skill: 'insight',
     ability: 'wisdom',
     proficient: false
   },
   {
-    name: 'intimidation',
+    skill: 'intimidation',
     ability: 'charisma',
     proficient: true
   },
   {
-    name: 'investigation',
+    skill: 'investigation',
     ability: 'intelligence',
     proficient: false
   },
   {
-    name: 'medicine',
+    skill: 'medicine',
     ability: 'wisdom',
     proficient: false
   },
   {
-    name: 'nature',
+    skill: 'nature',
     ability: 'intelligence',
     proficient: false
   },
   {
-    name: 'perception',
+    skill: 'perception',
     ability: 'wisdom',
     proficient: true
   },
   {
-    name: 'performance',
+    skill: 'performance',
     ability: 'charisma',
     proficient: false
   },
   {
-    name: 'persuasion',
+    skill: 'persuasion',
     ability: 'charisma',
     proficient: false
   },
   {
-    name: 'religion',
+    skill: 'religion',
     ability: 'wisdom',
     proficient: false
   },
   {
-    name: 'sleight of hand',
+    skill: 'sleight of hand',
     ability: 'dexterity',
     proficient: false
   },
   {
-    name: 'stealth',
+    skill: 'stealth',
     ability: 'dexterity',
     proficient: false
   },
   {
-    name: 'survival',
+    skill: 'survival',
     ability: 'constitution',
     proficient: false
   }

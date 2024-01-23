@@ -4,7 +4,7 @@ import { STATS } from './stats';
 import { SKILLS } from './skills';
 import { CharacterType } from '../types';
 
-export const sampleCharacetr: CharacterType = {
+export const sampleCharacter: CharacterType = {
   persona: PERSONA,
   abilities: ABILITIES,
   stats: STATS,
