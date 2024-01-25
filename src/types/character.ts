@@ -1,5 +1,5 @@
 export type PersonaType = {
-  name: string;
+  characterName: string;
   race: string;
   alignment: string;
   class: string;

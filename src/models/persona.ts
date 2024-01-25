@@ -1,5 +1,5 @@
 export const PERSONA = {
-  name: 'Xadatha',
+  characterName: 'Xadatha',
   race: 'Half Elf (Drow)',
   alignment: 'Chaotic Neutral (Good)',
   class: 'Warlock',
