@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { Box } from '../styles/sharedStyles';
 
-import { SKILLS } from '../models/skills';
 import styled from 'styled-components';
 import { calculateModifier } from '../utils/mapAbilityModifiers';
-import { ABILITIES } from '../models/abilities';
+import { CharacterContext } from '../context/context';
+import { SkillsType } from '../types/character';
 
 const SkillRow = styled.div`
   display: flex;
@@ -56,28 +56,46 @@ const InputWrapper = styled.div`
 `;
 
 export const Skills: React.FC = () => {
+  const { character, setCharacter } = useContext(CharacterContext);
+  const { abilities, skills } = character;
+
+  const handleChange = (index: number) => {
+    const isProficient = skills[index].proficient;
+    const updatedSkills: SkillsType = [...skills];
+    updatedSkills[index] = {
+      ...updatedSkills[index],
+      proficient: !isProficient
+    };
+
+    setCharacter({
+      ...character,
+      skills: updatedSkills
+    });
+  };
+
   return (
     <Grid>
       <Box style={{ gridRow: '1 / span 2' }}>
-        {SKILLS.map((skill, index) => {
-          const ability = ABILITIES.find(
-            (abilityObject) => abilityObject.ability === skill.ability
+        {skills.map((skillObj, index) => {
+          const ability = abilities.find(
+            (abilityObject) => abilityObject.ability === skillObj.ability
           );
-          const proficientSkill = skill.proficient;
+          const proficientSkill = skillObj.proficient;
           return (
             <SkillRow key={index}>
               <input
                 type="checkbox"
-                id={skill.name}
-                name={skill.name}
+                id={skillObj.skill}
+                name={skillObj.skill}
                 defaultChecked={proficientSkill}
+                onChange={() => handleChange(index)}
               />
               <SkillModifierBox>
-                {calculateModifier(ability!.score, skill.proficient)}
+                {calculateModifier(ability!.score, skillObj.proficient)}
               </SkillModifierBox>
-              <SkillLabel htmlFor={skill.name}>
-                {skill.name}
-                <SkillAbility>{`(${skill.ability.slice(0, 3)})`}</SkillAbility>
+              <SkillLabel htmlFor={skillObj.skill}>
+                {skillObj.skill}
+                <SkillAbility>{`(${skillObj.ability.slice(0, 3)})`}</SkillAbility>
               </SkillLabel>
             </SkillRow>
           );
