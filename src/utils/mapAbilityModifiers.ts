@@ -47,9 +47,11 @@ export const mapAbilityModifiers = (ability: number) => {
   return modifier;
 };
 
-const proficiency = 3;
-
-export const calculateModifier = (ability: number, isProficient: boolean = false) => {
+export const calculateModifier = (
+  ability: number,
+  isProficient: boolean = false,
+  proficiency: number = 0
+) => {
   if (ability !== null) {
     let modifier = mapAbilityModifiers(ability);
     if (isProficient) {

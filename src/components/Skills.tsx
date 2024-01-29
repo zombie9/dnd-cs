@@ -57,7 +57,8 @@ const InputWrapper = styled.div`
 
 export const Skills: React.FC = () => {
   const { character, setCharacter } = useContext(CharacterContext);
-  const { abilities, skills } = character;
+  const { abilities, skills, stats } = character;
+  const proficiency = stats[2].score;
 
   const handleChange = (index: number) => {
     const isProficient = skills[index].proficient;
@@ -91,7 +92,7 @@ export const Skills: React.FC = () => {
                 onChange={() => handleChange(index)}
               />
               <SkillModifierBox>
-                {calculateModifier(ability!.score, skillObj.proficient)}
+                {calculateModifier(ability!.score, skillObj.proficient, proficiency)}
               </SkillModifierBox>
               <SkillLabel htmlFor={skillObj.skill}>
                 {skillObj.skill}

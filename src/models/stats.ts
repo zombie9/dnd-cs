@@ -3,14 +3,14 @@ import { StatsType } from '../types/character';
 export const STATS: StatsType = [
   {
     stat: 'hit points',
-    value: 88
+    score: 88
   },
   {
     stat: 'armour class',
-    value: 18
+    score: 18
   },
   {
     stat: 'proficiency',
-    value: 5
+    score: 5
   }
 ];

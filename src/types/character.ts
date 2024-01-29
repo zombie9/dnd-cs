@@ -39,15 +39,15 @@ export type AbilitiesType = [
 export type StatsType = [
   {
     stat: 'hit points';
-    value: number;
+    score: number;
   },
   {
     stat: 'armour class';
-    value: number;
+    score: number;
   },
   {
     stat: 'proficiency';
-    value: number;
+    score: number;
   }
 ];
 

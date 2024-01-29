@@ -1,11 +1,12 @@
-import React, { useRef } from 'react';
+import React, { useRef, useContext } from 'react';
 import styled from 'styled-components';
+import { CharacterContext } from '../context/context';
+import { CharacterType } from '../types';
 
 import { calculateModifier } from '../utils/mapAbilityModifiers';
 
 import { Box } from '../styles/sharedStyles';
-import { ABILITIES } from '../models/abilities';
-import { STATS } from '../models/stats';
+// import { AbilitiesType, StatsType } from '../types/character';
 
 const Row = styled.div`
   display: flex;
@@ -56,25 +57,47 @@ const RowWrapper = styled.div`
 `;
 
 export const Abilities: React.FC = () => {
+  const { character, setCharacter } = useContext(CharacterContext);
+  const { abilities, stats } = character;
   const abilityRef = useRef<HTMLInputElement>(null);
   const statRef = useRef<HTMLInputElement>(null);
+
+  const handleChange = (
+    event: React.FormEvent<HTMLInputElement>,
+    abilityType: keyof CharacterType,
+    index: number
+  ) => {
+    const updatedAbilities = character[abilityType];
+    const currentObject = updatedAbilities[index];
+    const newObject = {
+      ...currentObject,
+      score: parseInt(event.currentTarget.value, 10)
+    };
+    updatedAbilities[index] = newObject;
+    setCharacter({
+      ...character,
+      [abilityType]: updatedAbilities
+    });
+  };
 
   return (
     <RowWrapper>
       <Box>
         <Row>
-          {ABILITIES.map((abilityObject, index) => {
+          {abilities.map((abilityObject, index: number) => {
+            const { ability, score } = abilityObject;
             return (
-              <InputWrapper key={`${abilityObject.ability}-${index}`}>
-                <IntersectingLabel htmlFor={abilityObject.ability}>
-                  {abilityObject.ability.toLocaleUpperCase()}
+              <InputWrapper key={`${ability}-${index}`}>
+                <IntersectingLabel htmlFor={ability}>
+                  {ability.toLocaleUpperCase()}
                 </IntersectingLabel>
                 <input
                   style={{ textAlign: 'center', height: '4em' }}
                   type="text"
-                  id={abilityObject.ability}
+                  id={ability}
                   ref={abilityRef}
-                  defaultValue={abilityObject.score}
+                  value={score}
+                  onChange={(event) => handleChange(event, 'abilities', index)}
                 />
                 <ModifierBox>{calculateModifier(abilityObject.score)}</ModifierBox>
               </InputWrapper>
@@ -84,18 +107,20 @@ export const Abilities: React.FC = () => {
       </Box>
       <Box>
         <Row>
-          {STATS.map((statObject, index) => {
+          {stats.map((statObject, index) => {
+            const { stat, score } = statObject;
             return (
-              <InputWrapper key={`${statObject.stat}-${index}`}>
-                <IntersectingLabel style={{ whiteSpace: 'nowrap' }} htmlFor={statObject.stat}>
-                  {statObject.stat.toLocaleUpperCase()}
+              <InputWrapper key={`${stat}-${index}`}>
+                <IntersectingLabel style={{ whiteSpace: 'nowrap' }} htmlFor={stat}>
+                  {stat.toLocaleUpperCase()}
                 </IntersectingLabel>
                 <input
                   style={{ textAlign: 'center', height: '4em' }}
                   type="text"
-                  id={statObject.stat}
+                  id={stat}
                   ref={statRef}
-                  defaultValue={statObject.value}
+                  value={score}
+                  // onChange={(event) => handleChange(event, 'stats', index)}
                 />
               </InputWrapper>
             );
