@@ -120,7 +120,7 @@ export const Abilities: React.FC = () => {
                   id={stat}
                   ref={statRef}
                   value={score}
-                  // onChange={(event) => handleChange(event, 'stats', index)}
+                  onChange={(event) => handleChange(event, 'stats', index)}
                 />
               </InputWrapper>
             );

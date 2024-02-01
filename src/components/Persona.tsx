@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { CharacterContext } from '../context/context';
 
 import { Box } from '../styles/sharedStyles';
+import { PersonaItemType } from '../types/character';
 
 const IntersectingLabel = styled.label`
   position: absolute;
@@ -36,18 +37,31 @@ const Wrapper = styled.div`
   gap: 1rem;
 `;
 
+const PersonaGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* grid-template-rows: repeat(2, 1fr); */
+  gap: 1rem;
+`;
+
 export const Persona: React.FC = () => {
   const { character, setCharacter } = useContext(CharacterContext);
-  const { persona } = character;
+  const persona = character.persona.slice(0, 6);
+  console.log('persona', persona);
 
-  const handleChange = (event: React.FormEvent<HTMLInputElement>, key: string) => {
+  const handleChange = (event: React.FormEvent<HTMLInputElement>, index: number) => {
+    const personaFields = character.persona;
+    const currentPersonaField = personaFields[index];
+    const newPersonaField = {
+      ...currentPersonaField,
+      value: event.currentTarget.value
+    };
+    personaFields[index] = newPersonaField;
     setCharacter({
       ...character,
-      persona: {
-        ...character.persona,
-        [key]: event.currentTarget.value
-      }
+      persona: personaFields
     });
+    console.log('character.persona', character.persona);
   };
 
   console.log('character', character);
@@ -55,75 +69,34 @@ export const Persona: React.FC = () => {
   return (
     <Wrapper>
       <Box style={{ flexGrow: '1' }}>
-        <Row>
-          <InputWrapper>
-            <IntersectingLabel htmlFor="name">NAME</IntersectingLabel>
-            <input
-              autoComplete="off"
-              type="text"
-              id="name"
-              value={persona.characterName}
-              onChange={(event) => handleChange(event, 'characterName')}
-            />
-          </InputWrapper>
-          <InputWrapper>
-            <IntersectingLabel htmlFor="race">RACE</IntersectingLabel>
-            <input
-              type="text"
-              id="race"
-              value={persona.race}
-              onChange={(event) => handleChange(event, 'race')}
-            />
-          </InputWrapper>
-          <InputWrapper>
-            <IntersectingLabel htmlFor="alignment">ALIGNMENT</IntersectingLabel>
-            <input
-              type="text"
-              id="alignment"
-              value={persona.alignment}
-              onChange={(event) => handleChange(event, 'alignment')}
-            />
-          </InputWrapper>
-        </Row>
-        <Row>
-          <InputWrapper>
-            <IntersectingLabel htmlFor="class">CLASS</IntersectingLabel>
-            <input
-              type="text"
-              id="class"
-              value={persona.class}
-              onChange={(event) => handleChange(event, 'class')}
-            />
-          </InputWrapper>
-          <InputWrapper>
-            <IntersectingLabel htmlFor="subclass">SUBCLASS</IntersectingLabel>
-            <input
-              type="text"
-              id="subclass"
-              value={persona.subclass}
-              onChange={(event) => handleChange(event, 'subclass')}
-            />
-          </InputWrapper>
-          <InputWrapper>
-            <IntersectingLabel htmlFor="background">BACKGROUND</IntersectingLabel>
-            <input
-              type="text"
-              id="background"
-              value={persona.background}
-              onChange={(event) => handleChange(event, 'background')}
-            />
-          </InputWrapper>
-        </Row>
+        <PersonaGrid>
+          {persona.map((personaItem: PersonaItemType, index: number) => {
+            return (
+              <InputWrapper key={personaItem.label}>
+                <IntersectingLabel htmlFor={personaItem.label}>
+                  {personaItem.label}
+                </IntersectingLabel>
+                <input
+                  autoComplete="off"
+                  type="text"
+                  id="name"
+                  value={personaItem.value}
+                  onChange={(event) => handleChange(event, index)}
+                />
+              </InputWrapper>
+            );
+          })}
+        </PersonaGrid>
       </Box>
       <Box style={{ maxWidth: '8rem' }}>
         <Row>
           <InputWrapper>
-            <IntersectingLabel htmlFor="experience">LEVEL</IntersectingLabel>
+            <IntersectingLabel htmlFor="level">LEVEL</IntersectingLabel>
             <input
               type="text"
               id="level"
-              value={persona.level}
-              onChange={(event) => handleChange(event, 'level')}
+              value={character.persona[6].value}
+              onChange={(event) => handleChange(event, 6)}
             />
           </InputWrapper>
         </Row>
@@ -133,8 +106,8 @@ export const Persona: React.FC = () => {
             <input
               type="text"
               id="experience"
-              value={persona.experience}
-              onChange={(event) => handleChange(event, 'experience')}
+              value={character.persona[7].value}
+              onChange={(event) => handleChange(event, 7)}
             />
           </InputWrapper>
         </Row>

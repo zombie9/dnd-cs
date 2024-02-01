@@ -1,12 +1,41 @@
-export type PersonaType = {
-  characterName: string;
-  race: string;
-  alignment: string;
-  class: string;
-  subclass: string;
-  background: string;
-  level: string;
-  experience: string;
+export type PersonaType = [
+  {
+    label: 'name';
+    value: string;
+  },
+  {
+    label: 'race';
+    value: string;
+  },
+  {
+    label: 'alignment';
+    value: string;
+  },
+  {
+    label: 'class';
+    value: string;
+  },
+  {
+    label: 'subclass';
+    value: string;
+  },
+  {
+    label: 'background';
+    value: string;
+  },
+  {
+    label: 'level';
+    value: string;
+  },
+  {
+    label: 'name';
+    value: string;
+  }
+];
+
+export type PersonaItemType = {
+  label: string;
+  value: string;
 };
 
 export type AbilitiesType = [
