@@ -37,6 +37,7 @@ const Grid = styled.div`
   display: grid;
   grid-template-columns: 2fr 3fr 3fr;
   gap: 1rem;
+  margin-bottom: 1rem;
 `;
 
 const IntersectingLabel = styled.label`
@@ -53,6 +54,10 @@ const InputWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+`;
+
+const TraitsBox = styled(Box)`
+  margin-bottom: 0;
 `;
 
 export const Skills: React.FC = () => {
@@ -76,7 +81,7 @@ export const Skills: React.FC = () => {
 
   return (
     <Grid>
-      <Box style={{ gridRow: '1 / span 2' }}>
+      <TraitsBox style={{ gridRow: '1 / span 2' }}>
         {skills.map((skillObj, index) => {
           const ability = abilities.find(
             (abilityObject) => abilityObject.ability === skillObj.ability
@@ -101,31 +106,31 @@ export const Skills: React.FC = () => {
             </SkillRow>
           );
         })}
-      </Box>
-      <Box>
+      </TraitsBox>
+      <TraitsBox>
         <InputWrapper>
           <textarea />
           <IntersectingLabel>DESCRIPTION</IntersectingLabel>
         </InputWrapper>
-      </Box>
-      <Box>
+      </TraitsBox>
+      <TraitsBox>
         <InputWrapper>
           <textarea />
           <IntersectingLabel>PERSONALITY TRAITS</IntersectingLabel>
         </InputWrapper>
-      </Box>
-      <Box>
+      </TraitsBox>
+      <TraitsBox>
         <InputWrapper>
           <textarea />
           <IntersectingLabel>RACIAL TRAITS</IntersectingLabel>
         </InputWrapper>
-      </Box>
-      <Box>
+      </TraitsBox>
+      <TraitsBox>
         <InputWrapper>
           <textarea />
           <IntersectingLabel>CLASS ABILITIES</IntersectingLabel>
         </InputWrapper>
-      </Box>
+      </TraitsBox>
     </Grid>
   );
 };

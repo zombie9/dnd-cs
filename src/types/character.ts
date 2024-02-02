@@ -33,11 +33,6 @@ export type PersonaType = [
   }
 ];
 
-export type PersonaItemType = {
-  label: string;
-  value: string;
-};
-
 export type AbilitiesType = [
   {
     ability: 'strength';
