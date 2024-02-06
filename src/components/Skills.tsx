@@ -5,7 +5,7 @@ import { Box } from '../styles/sharedStyles';
 import styled from 'styled-components';
 import { calculateModifier } from '../utils/mapAbilityModifiers';
 import { CharacterContext } from '../context/context';
-import { SkillsType } from '../types/character';
+import { SkillsType } from '../types';
 
 const SkillRow = styled.div`
   display: flex;

@@ -1,4 +1,4 @@
-import { AbilitiesType } from '../types/character';
+import { AbilitiesType } from '../types';
 
 export const ABILITIES: AbilitiesType = [
   {

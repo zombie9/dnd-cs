@@ -1,4 +1,4 @@
-import { SkillsType } from '../types/character';
+import { SkillsType } from '../types';
 
 export const SKILLS: SkillsType = [
   {

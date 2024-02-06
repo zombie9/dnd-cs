@@ -1,4 +1,4 @@
-import { PersonaType } from '../types/character';
+import { PersonaType } from '../types';
 
 export const PERSONA: PersonaType = [
   {
