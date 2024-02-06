@@ -1,4 +1,6 @@
-export const PERSONA = [
+import { PersonaType } from '../types/character';
+
+export const PERSONA: PersonaType = [
   {
     label: 'name',
     value: 'Xadatha'
@@ -28,7 +30,7 @@ export const PERSONA = [
     value: '8'
   },
   {
-    label: 'name',
+    label: 'experience',
     value: '88'
   }
 ];

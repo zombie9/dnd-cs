@@ -33,30 +33,7 @@ const SkillModifierBox = styled.div`
   background-color: ${({ theme }) => theme.background};
 `;
 
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: 2fr 3fr 3fr;
-  gap: 1rem;
-  margin-bottom: 1rem;
-`;
-
-const IntersectingLabel = styled.label`
-  position: absolute;
-  font-size: 0.7rem;
-  top: -0.5rem;
-  left: 0.2rem;
-  padding: 0 0.5em;
-  z-index: 10;
-  background: ${({ theme }) => theme.panel};
-`;
-
-const InputWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-`;
-
-const TraitsBox = styled(Box)`
+const SkillsBox = styled(Box)`
   margin-bottom: 0;
 `;
 
@@ -80,57 +57,31 @@ export const Skills: React.FC = () => {
   };
 
   return (
-    <Grid>
-      <TraitsBox style={{ gridRow: '1 / span 2' }}>
-        {skills.map((skillObj, index) => {
-          const ability = abilities.find(
-            (abilityObject) => abilityObject.ability === skillObj.ability
-          );
-          const proficientSkill = skillObj.proficient;
-          return (
-            <SkillRow key={index}>
-              <input
-                type="checkbox"
-                id={skillObj.skill}
-                name={skillObj.skill}
-                defaultChecked={proficientSkill}
-                onChange={() => handleChange(index)}
-              />
-              <SkillModifierBox>
-                {calculateModifier(ability!.score, skillObj.proficient, proficiency)}
-              </SkillModifierBox>
-              <SkillLabel htmlFor={skillObj.skill}>
-                {skillObj.skill}
-                <SkillAbility>{`(${skillObj.ability.slice(0, 3)})`}</SkillAbility>
-              </SkillLabel>
-            </SkillRow>
-          );
-        })}
-      </TraitsBox>
-      <TraitsBox>
-        <InputWrapper>
-          <textarea />
-          <IntersectingLabel>DESCRIPTION</IntersectingLabel>
-        </InputWrapper>
-      </TraitsBox>
-      <TraitsBox>
-        <InputWrapper>
-          <textarea />
-          <IntersectingLabel>PERSONALITY TRAITS</IntersectingLabel>
-        </InputWrapper>
-      </TraitsBox>
-      <TraitsBox>
-        <InputWrapper>
-          <textarea />
-          <IntersectingLabel>RACIAL TRAITS</IntersectingLabel>
-        </InputWrapper>
-      </TraitsBox>
-      <TraitsBox>
-        <InputWrapper>
-          <textarea />
-          <IntersectingLabel>CLASS ABILITIES</IntersectingLabel>
-        </InputWrapper>
-      </TraitsBox>
-    </Grid>
+    <SkillsBox style={{ gridRow: '1 / span 2' }}>
+      {skills.map((skillObj, index) => {
+        const ability = abilities.find(
+          (abilityObject) => abilityObject.ability === skillObj.ability
+        );
+        const proficientSkill = skillObj.proficient;
+        return (
+          <SkillRow key={index}>
+            <input
+              type="checkbox"
+              id={skillObj.skill}
+              name={skillObj.skill}
+              defaultChecked={proficientSkill}
+              onChange={() => handleChange(index)}
+            />
+            <SkillModifierBox>
+              {calculateModifier(ability!.score, skillObj.proficient, proficiency)}
+            </SkillModifierBox>
+            <SkillLabel htmlFor={skillObj.skill}>
+              {skillObj.skill}
+              <SkillAbility>{`(${skillObj.ability.slice(0, 3)})`}</SkillAbility>
+            </SkillLabel>
+          </SkillRow>
+        );
+      })}
+    </SkillsBox>
   );
 };

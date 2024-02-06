@@ -28,7 +28,7 @@ export type PersonaType = [
     value: string;
   },
   {
-    label: 'name';
+    label: 'experience';
     value: string;
   }
 ];
