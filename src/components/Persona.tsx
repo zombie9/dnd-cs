@@ -45,7 +45,6 @@ const PersonaGrid = styled.div`
 export const Persona: React.FC = () => {
   const { character, setCharacter } = useContext(CharacterContext);
   const persona = character.persona.slice(0, 6);
-  console.log('persona', persona);
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>, index: number) => {
     const personaFields = character.persona;
@@ -59,10 +58,7 @@ export const Persona: React.FC = () => {
       ...character,
       persona: personaFields
     });
-    console.log('character.persona', character.persona);
   };
-
-  console.log('character', character);
 
   return (
     <Wrapper>
@@ -72,7 +68,7 @@ export const Persona: React.FC = () => {
             return (
               <InputWrapper key={personaItem.label}>
                 <IntersectingLabel htmlFor={personaItem.label}>
-                  {personaItem.label}
+                  {personaItem.label.toUpperCase()}
                 </IntersectingLabel>
                 <input
                   autoComplete="off"
@@ -89,7 +85,9 @@ export const Persona: React.FC = () => {
       <Box style={{ maxWidth: '8rem' }}>
         <Row>
           <InputWrapper>
-            <IntersectingLabel htmlFor="level">LEVEL</IntersectingLabel>
+            <IntersectingLabel htmlFor="level">
+              {character.persona[6].label.toUpperCase()}
+            </IntersectingLabel>
             <input
               type="text"
               id="level"
@@ -100,7 +98,9 @@ export const Persona: React.FC = () => {
         </Row>
         <Row>
           <InputWrapper>
-            <IntersectingLabel htmlFor="experience">EXPERIENCE</IntersectingLabel>
+            <IntersectingLabel htmlFor="experience">
+              {character.persona[7].label.toUpperCase()}
+            </IntersectingLabel>
             <input
               type="text"
               id="experience"

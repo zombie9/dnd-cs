@@ -27,35 +27,40 @@ const TraitsBox = styled(Box)`
 `;
 
 export const Traits: React.FC = () => {
-  const { character } = useContext(CharacterContext);
-  console.log('character', character);
+  const { character, setCharacter } = useContext(CharacterContext);
+  const { traits } = character;
+
+  const handleChange = (event: React.FormEvent<HTMLTextAreaElement>, index: number) => {
+    console.log(index, 'change', event.currentTarget.value);
+    const traitsEntries = traits;
+    const traitToChange = traitsEntries[index];
+    const newTrait = {
+      ...traitToChange,
+      value: event.currentTarget.value
+    };
+    traitsEntries[index] = newTrait;
+    setCharacter({
+      ...character,
+      traits: traitsEntries
+    });
+  };
 
   return (
     <>
-      <TraitsBox>
-        <InputWrapper>
-          <textarea />
-          <IntersectingLabel>DESCRIPTION</IntersectingLabel>
-        </InputWrapper>
-      </TraitsBox>
-      <TraitsBox>
-        <InputWrapper>
-          <textarea />
-          <IntersectingLabel>PERSONALITY TRAITS</IntersectingLabel>
-        </InputWrapper>
-      </TraitsBox>
-      <TraitsBox>
-        <InputWrapper>
-          <textarea />
-          <IntersectingLabel>RACIAL TRAITS</IntersectingLabel>
-        </InputWrapper>
-      </TraitsBox>
-      <TraitsBox>
-        <InputWrapper>
-          <textarea />
-          <IntersectingLabel>CLASS ABILITIES</IntersectingLabel>
-        </InputWrapper>
-      </TraitsBox>
+      {traits.map((trait, index) => {
+        return (
+          <TraitsBox key={`${index}${trait.label}`}>
+            <InputWrapper>
+              <textarea
+                spellCheck="false"
+                value={trait.value}
+                onChange={(event) => handleChange(event, index)}
+              />
+              <IntersectingLabel>{trait.label.toUpperCase()}</IntersectingLabel>
+            </InputWrapper>
+          </TraitsBox>
+        );
+      })}
     </>
   );
 };
