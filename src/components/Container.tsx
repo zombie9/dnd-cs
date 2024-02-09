@@ -8,6 +8,8 @@ import { Persona } from './Persona';
 import { Abilities } from './Abilities';
 import { Skills } from './Skills';
 import { Traits } from './Traits';
+import { Spells } from './Spells';
+import { Box } from '../styles/sharedStyles';
 
 const StyledContainer = styled.div`
   margin: 0 auto;
@@ -15,9 +17,16 @@ const StyledContainer = styled.div`
   max-width: 1200px;
 `;
 
-const Grid = styled.div`
+const SkillGrid = styled.div`
   display: grid;
   grid-template-columns: 2fr 3fr 3fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+`;
+
+const SpellGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   gap: 1rem;
   margin-bottom: 1rem;
 `;
@@ -29,10 +38,15 @@ export const Container: React.FC<ThemeType> = ({ theme, toggleTheme }) => {
       <StyledContainer>
         <Persona />
         <Abilities />
-        <Grid>
+        <SkillGrid>
           <Skills />
           <Traits />
-        </Grid>
+        </SkillGrid>
+        <SpellGrid>
+          <Spells />
+          <Box />
+          <Box />
+        </SpellGrid>
       </StyledContainer>
     </>
   );

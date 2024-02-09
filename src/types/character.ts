@@ -3,6 +3,7 @@ import { AbilitiesType } from './abilitiesType';
 import { StatsType } from './statsType';
 import { SkillsType } from './skillsType';
 import { TraitsType } from './traitsType';
+import { spellsType } from './spellsType';
 
 export type CharacterType = {
   persona: PersonaType;
@@ -10,4 +11,5 @@ export type CharacterType = {
   stats: StatsType;
   skills: SkillsType;
   traits: TraitsType;
+  spells: spellsType;
 };
