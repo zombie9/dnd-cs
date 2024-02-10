@@ -1,35 +1,39 @@
 import React, { useContext } from 'react';
+import { PlusCircleDotted } from 'react-bootstrap-icons';
 
 import { Box } from '../styles/sharedStyles';
 
 import styled from 'styled-components';
 
 import { CharacterContext } from '../context/context';
+import { mapSpellLevel } from '../utils/mapSpellLevel';
 
-// const IntersectingLabel = styled.label`
-//   position: absolute;
-//   font-size: 0.7rem;
-//   top: -0.5rem;
-//   left: 0.2rem;
-//   padding: 0 0.5em;
-//   z-index: 10;
-//   background: ${({ theme }) => theme.panel};
-// `;
-
-// const InputWrapper = styled.div`
-//   position: relative;
-//   width: 100%;
-//   height: 100%;
-// `;
+const SpellBlock = styled.div`
+  margin-bottom: 1.2rem;
+`;
 
 const SpellRow = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-size: 0.7rem;
+  margin-bottom: 0.3rem;
 `;
 
 const SpellLabel = styled.div`
   font-size: 0.7rem;
+  margin-bottom: 0.4rem;
+  display: flex;
+  justify-content: space-between;
+`;
+
+// const SpellBreak = styled.hr`
+//   border: 0.5px dashed ${({ theme }) => theme.secondary};
+// `;
+
+const SpellField = styled.input`
+  padding: 0.2rem 0.4rem !important;
+  font-size: 0.7rem !important;
 `;
 
 export const Spells: React.FC = () => {
@@ -56,10 +60,13 @@ export const Spells: React.FC = () => {
       {spells.map((spellBlock, index) => {
         const spellList = spellBlock.spells;
         return (
-          <div>
-            <SpellLabel>{spellBlock.level} LEVEL</SpellLabel>
+          <SpellBlock>
+            <SpellLabel>
+              {mapSpellLevel(index)}
+              <PlusCircleDotted size={12} />
+            </SpellLabel>
 
-            {spellList.map((spell) => {
+            {spellList.map((spell, idx) => {
               return (
                 <SpellRow>
                   <input
@@ -67,16 +74,24 @@ export const Spells: React.FC = () => {
                     id={spell.label}
                     name={spell.label}
                     defaultChecked={spell.memorised}
-                    onChange={() => handleChange(index)}
+                    onChange={() => handleChange(idx)}
                   />
-                  <SpellLabel>{spell.label}</SpellLabel>
+                  <SpellField
+                    type="text"
+                    value={spell.label}
+                    name={spell.label}
+                    onChange={() => handleChange(idx)}
+                  />
                 </SpellRow>
               );
             })}
-            <hr />
-          </div>
+            {/* <SpellBreak /> */}
+          </SpellBlock>
         );
       })}
+      <div style={{ textAlign: 'center' }}>
+        <PlusCircleDotted size={14} />
+      </div>
     </Box>
   );
 };

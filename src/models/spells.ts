@@ -47,7 +47,7 @@ export const SPELLS: spellsType = [
         memorised: true
       },
       {
-        label: 'Hold Person',
+        label: 'Dimension Door',
         memorised: true
       }
     ]
