@@ -7,6 +7,7 @@ import styled from 'styled-components';
 
 import { CharacterContext } from '../context/context';
 import { mapSpellLevel } from '../utils/mapSpellLevel';
+import { spellType } from '../types/spellsType';
 
 const SpellBlock = styled.div`
   margin-bottom: 1.2rem;
@@ -27,46 +28,77 @@ const SpellLabel = styled.div`
   justify-content: space-between;
 `;
 
-// const SpellBreak = styled.hr`
-//   border: 0.5px dashed ${({ theme }) => theme.secondary};
-// `;
-
 const SpellField = styled.input`
   padding: 0.2rem 0.4rem !important;
   font-size: 0.7rem !important;
 `;
 
 export const Spells: React.FC = () => {
-  const { character } = useContext(CharacterContext);
+  const { character, setCharacter } = useContext(CharacterContext);
   const { spells } = character;
 
-  const handleChange = (index: number) => {
-    console.log(index, 'change');
-    // const traitsEntries = traits;
-    // const traitToChange = traitsEntries[index];
-    // const newTrait = {
-    //   ...traitToChange,
-    //   value: event.currentTarget.value
-    // };
-    // traitsEntries[index] = newTrait;
-    // setCharacter({
-    //   ...character,
-    //   traits: traitsEntries
-    // });
+  const handleSpellChange = (
+    event: React.FormEvent<HTMLInputElement>,
+    blockIndex: number,
+    spellIndex: number
+  ) => {
+    const spellBlock = spells[blockIndex];
+    const spellToUpdate = spellBlock.spells[spellIndex];
+    const updatedSpell: spellType = {
+      ...spellToUpdate,
+      label: event.currentTarget.value
+    };
+    const spellList = spellBlock.spells;
+    spellList[spellIndex] = updatedSpell;
+    const newSpellBlock = {
+      ...spellBlock,
+      spells: spellList
+    };
+    const updatedSpells = spells;
+    updatedSpells[blockIndex] = newSpellBlock;
+
+    setCharacter({
+      ...character,
+      spells: updatedSpells
+    });
+    console.log('updatedSpells', updatedSpells);
+  };
+
+  const handleMemorisedChange = (blockIndex: number, spellIndex: number) => {
+    const spellBlock = spells[blockIndex];
+    const spellToUpdate = spellBlock.spells[spellIndex];
+    const currentMemorised = spellToUpdate.memorised;
+    const updatedSpell: spellType = {
+      ...spellToUpdate,
+      memorised: !currentMemorised
+    };
+    const spellList = spellBlock.spells;
+    spellList[spellIndex] = updatedSpell;
+    const newSpellBlock = {
+      ...spellBlock,
+      spells: spellList
+    };
+    const updatedSpells = spells;
+    updatedSpells[blockIndex] = newSpellBlock;
+
+    setCharacter({
+      ...character,
+      spells: updatedSpells
+    });
   };
 
   return (
     <Box>
-      {spells.map((spellBlock, index) => {
+      {spells.map((spellBlock, blockIndex) => {
         const spellList = spellBlock.spells;
         return (
           <SpellBlock>
             <SpellLabel>
-              {mapSpellLevel(index)}
+              {mapSpellLevel(blockIndex)}
               <PlusCircleDotted size={12} />
             </SpellLabel>
 
-            {spellList.map((spell, idx) => {
+            {spellList.map((spell, spellIndex) => {
               return (
                 <SpellRow>
                   <input
@@ -74,18 +106,17 @@ export const Spells: React.FC = () => {
                     id={spell.label}
                     name={spell.label}
                     defaultChecked={spell.memorised}
-                    onChange={() => handleChange(idx)}
+                    onChange={() => handleMemorisedChange(blockIndex, spellIndex)}
                   />
                   <SpellField
                     type="text"
                     value={spell.label}
                     name={spell.label}
-                    onChange={() => handleChange(idx)}
+                    onChange={(event) => handleSpellChange(event, blockIndex, spellIndex)}
                   />
                 </SpellRow>
               );
             })}
-            {/* <SpellBreak /> */}
           </SpellBlock>
         );
       })}
