@@ -7,7 +7,7 @@ import styled from 'styled-components';
 
 import { CharacterContext } from '../context/context';
 import { mapSpellLevel } from '../utils/mapSpellLevel';
-import { spellType } from '../types/spellsType';
+import { spellType, spellsType } from '../types/spellsType';
 
 const SpellBlock = styled.div`
   margin-bottom: 1.2rem;
@@ -78,7 +78,7 @@ export const Spells: React.FC = () => {
       ...spellBlock,
       spells: spellList
     };
-    const updatedSpells = spells;
+    const updatedSpells: spellsType = spells;
     updatedSpells[blockIndex] = newSpellBlock;
 
     setCharacter({
@@ -87,20 +87,58 @@ export const Spells: React.FC = () => {
     });
   };
 
+  const handleAddSpell = (blockIndex: number) => {
+    const emptySpell: spellType = {
+      label: '',
+      memorised: false
+    };
+    const spellBlock = spells[blockIndex];
+    const spellList = spellBlock.spells;
+    spellList[spellList.length] = emptySpell;
+    const newSpellBlock = {
+      ...spellBlock,
+      spells: spellList
+    };
+    const updatedSpells: spellsType = spells;
+    updatedSpells[blockIndex] = newSpellBlock;
+
+    setCharacter({
+      ...character,
+      spells: updatedSpells
+    });
+  };
+
+  const handleAddSpellLevel = () => {
+    const newLevel = spells.length;
+    const newBlock = {
+      level: newLevel,
+      spells: [
+        {
+          label: '',
+          memorised: false
+        }
+      ]
+    };
+    setCharacter({
+      ...character,
+      spells: [...spells, newBlock]
+    });
+  };
+
   return (
     <Box>
       {spells.map((spellBlock, blockIndex) => {
         const spellList = spellBlock.spells;
         return (
-          <SpellBlock>
+          <SpellBlock key={`${blockIndex}-spells`}>
             <SpellLabel>
               {mapSpellLevel(blockIndex)}
-              <PlusCircleDotted size={12} />
+              <PlusCircleDotted size={12} onClick={() => handleAddSpell(blockIndex)} />
             </SpellLabel>
 
             {spellList.map((spell, spellIndex) => {
               return (
-                <SpellRow>
+                <SpellRow key={`${spellBlock}-spell-${spellIndex}`}>
                   <input
                     type="checkbox"
                     id={spell.label}
@@ -121,7 +159,7 @@ export const Spells: React.FC = () => {
         );
       })}
       <div style={{ textAlign: 'center' }}>
-        <PlusCircleDotted size={14} />
+        <PlusCircleDotted size={14} onClick={() => handleAddSpellLevel()} />
       </div>
     </Box>
   );
