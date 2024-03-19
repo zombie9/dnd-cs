@@ -1,7 +1,7 @@
 import React from 'react';
-import { ThemeButton } from '../styles/sharedStyles';
+import { ThemeButton } from '../../styles/sharedStyles';
 
-import { ThemeType } from '../types';
+import { ThemeType } from '../../types';
 
 export const ThemeToggle: React.FC<ThemeType> = ({ theme, toggleTheme }) => {
   return (

@@ -3,9 +3,9 @@ import { X } from 'react-bootstrap-icons';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { useAuth } from '../context/authContext';
-import { Context } from '../context/context';
-import { useFirebase } from '../hooks/useFirebase';
+import { useAuth } from '../../context/authContext';
+import { CharacterContext } from '../../context/context';
+import { useFirebase } from '../../hooks/useFirebase';
 import {
   ModalBackdrop,
   AuthBox,
@@ -13,7 +13,8 @@ import {
   SubmitButtonWrapper,
   ErrorBox,
   ThemeButton
-} from '../styles/sharedStyles';
+} from '../../styles/sharedStyles';
+import { CharacterType } from '../../types';
 
 const CloseButton = styled.div`
   position: absolute;
@@ -36,13 +37,13 @@ const CharacterButton = styled(ThemeButton)`
 `;
 
 const LoadModal = ({ closeModal }) => {
-  const { setCharacter } = useContext(Context);
+  const { setCharacter } = useContext(CharacterContext);
   const { currentUser } = useAuth();
   const { characterList, loading, error } = useFirebase(currentUser);
   const navigate = useNavigate();
 
-  const handleLoad = (id) => {
-    const characterToLoad = characterList.find((char) => char.id === id);
+  const handleLoad = (id: string) => {
+    const characterToLoad = characterList.find((char: CharacterType) => char.id === id);
     setCharacter(characterToLoad);
     navigate('/');
   };
@@ -57,7 +58,7 @@ const LoadModal = ({ closeModal }) => {
         <div style={{ paddingBottom: '0.5rem' }}>Select your character:</div>
         {loading && loading}
         {characterList &&
-          characterList.map((char) => {
+          characterList.map((char: CharacterType) => {
             return (
               <CharacterRow key={char.id}>
                 <CharacterButton onClick={() => handleLoad(char.id)}>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { ThemeType } from '../types';
+import { ThemeType } from '../../types';
 
 import { MenuButton } from './MenuButton';
 import { NavButton } from './NavButton';

@@ -1,15 +1,12 @@
-import { PersonaType } from './personaType';
-import { AbilitiesType } from './abilitiesType';
-import { StatsType } from './statsType';
-import { SkillsType } from './skillsType';
-import { TraitsType } from './traitsType';
-import { spellsType } from './spellsType';
+import { PersonaType, AbilitiesType, StatsType, SkillsType, TraitsType, SpellsType } from './';
 
 export type CharacterType = {
+  id: string;
+  userId: string;
   persona: PersonaType;
   abilities: AbilitiesType;
   stats: StatsType;
   skills: SkillsType;
   traits: TraitsType;
-  spells: spellsType;
+  spells: SpellsType;
 };

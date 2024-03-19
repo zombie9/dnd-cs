@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { ThemeProvider } from 'styled-components';
 
-import { Container } from './components/Container';
+import { Container } from './components/layout/Container';
 import { CharacterContext } from './context/context';
 import { useDarkMode } from './hooks/useDarkMode';
 import { GlobalStyles } from './styles/GlobalStyles';

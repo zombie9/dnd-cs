@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ThemeButton } from '../styles/sharedStyles';
+import { ThemeButton } from '../../styles/sharedStyles';
 
 interface MenuButtonProps {
   setMenuIsOpen: (value: boolean | ((menuIsOpen: boolean) => boolean)) => void;

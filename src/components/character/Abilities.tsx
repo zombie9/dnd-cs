@@ -1,11 +1,11 @@
 import React, { useRef, useContext } from 'react';
 import styled from 'styled-components';
-import { CharacterContext } from '../context/context';
-import { CharacterType } from '../types';
+import { CharacterContext } from '../../context/context';
 
-import { calculateModifier } from '../utils/mapAbilityModifiers';
+import { calculateModifier } from '../../utils/mapAbilityModifiers';
 
-import { Box } from '../styles/sharedStyles';
+import { Box } from '../../styles/sharedStyles';
+import { AbilitiesType, StatsType } from '../../types';
 // import { AbilitiesType, StatsType } from '../types/character';
 
 const Row = styled.div`
@@ -64,10 +64,10 @@ export const Abilities: React.FC = () => {
 
   const handleChange = (
     event: React.FormEvent<HTMLInputElement>,
-    abilityType: keyof CharacterType,
+    abilityType: 'abilities' | 'stats',
     index: number
   ) => {
-    const updatedAbilities = character[abilityType];
+    const updatedAbilities: AbilitiesType | StatsType = character[abilityType];
     const currentObject = updatedAbilities[index];
     const newObject = {
       ...currentObject,

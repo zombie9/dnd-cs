@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { ThemeType } from '../types';
+import { ThemeType } from '../../types';
 
 import { Header } from './Header';
-import { Persona } from './Persona';
-import { Abilities } from './Abilities';
-import { Skills } from './Skills';
-import { Traits } from './Traits';
-import { Spells } from './Spells';
-import { Box } from '../styles/sharedStyles';
+import { Persona } from '../character/Persona';
+import { Abilities } from '../character/Abilities';
+import { Skills } from '../character/Skills';
+import { Traits } from '../character/Traits';
+import { Spells } from '../character/Spells';
+import { Box } from '../../styles/sharedStyles';
 
 const StyledContainer = styled.div`
   margin: 0 auto;

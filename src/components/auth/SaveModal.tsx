@@ -4,9 +4,10 @@ import { X } from 'react-bootstrap-icons';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { useAuth } from '../context/authContext';
-import { Context } from '../context/context';
-import { db } from '../firebase';
+import { useAuth } from '../../context/authContext';
+import { CharacterContext } from '../../context/context';
+import { db } from '../../firebase';
+
 import {
   ModalBackdrop,
   AuthBox,
@@ -17,7 +18,7 @@ import {
   TextLabel,
   SubmitButtonWrapper,
   ErrorBox
-} from '../styles/sharedStyles';
+} from '../../styles/sharedStyles';
 
 const CloseButton = styled.div`
   position: absolute;
@@ -28,7 +29,7 @@ const CloseButton = styled.div`
 `;
 
 const SaveModal = () => {
-  const { character } = useContext(Context);
+  const { character } = useContext(CharacterContext);
   const { currentUser } = useAuth();
   const nameRef = useRef();
   const [error, setError] = useState('');

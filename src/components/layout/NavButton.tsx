@@ -1,7 +1,7 @@
 import React from 'react';
 // import { useNavigate } from 'react-router-dom';
 
-import { ThemeButton } from '../styles/sharedStyles';
+import { ThemeButton } from '../../styles/sharedStyles';
 
 interface NavButtonProps {
   text: string;

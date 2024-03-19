@@ -16,8 +16,8 @@ export const useFirebase = (currentUser) => {
       try {
         const currentUserId = currentUser.uid;
         const collectionRef = await collection(db, 'characters');
-        const q = query(collectionRef, where('userId', '==', currentUserId));
-        const snap = await getDocs(q);
+        const getUserCharacters = query(collectionRef, where('userId', '==', currentUserId));
+        const snap = await getDocs(getUserCharacters);
         let list = [];
         snap.forEach((doc) => {
           list.push({
@@ -37,7 +37,7 @@ export const useFirebase = (currentUser) => {
       }
     };
     fetchCharacter();
-  }, []);
+  }, [currentUser.uid]);
 
   return { characterList, loading, error };
 };

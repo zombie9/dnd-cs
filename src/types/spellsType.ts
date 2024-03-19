@@ -1,9 +1,9 @@
-export type spellType = {
+export type SpellType = {
   label: string;
   memorised: boolean;
 };
 
-export type spellsType = {
+export type SpellsType = {
   level: number;
-  spells: spellType[];
+  spells: SpellType[];
 }[];

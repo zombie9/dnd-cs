@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 
-import { Box } from '../styles/sharedStyles';
+import { Box } from '../../styles/sharedStyles';
 
 import styled from 'styled-components';
 
-import { CharacterContext } from '../context/context';
+import { CharacterContext } from '../../context/context';
 
 const IntersectingLabel = styled.label`
   position: absolute;

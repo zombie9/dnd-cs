@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import { PlusCircleDotted } from 'react-bootstrap-icons';
 
-import { Box } from '../styles/sharedStyles';
+import { Box } from '../../styles/sharedStyles';
 
 import styled from 'styled-components';
 
-import { CharacterContext } from '../context/context';
-import { mapSpellLevel } from '../utils/mapSpellLevel';
-import { spellType, spellsType } from '../types/spellsType';
+import { CharacterContext } from '../../context/context';
+import { mapSpellLevel } from '../../utils/mapSpellLevel';
+import { SpellType, SpellsType } from '../../types';
 
 const SpellBlock = styled.div`
   margin-bottom: 1.2rem;
@@ -44,7 +44,7 @@ export const Spells: React.FC = () => {
   ) => {
     const spellBlock = spells[blockIndex];
     const spellToUpdate = spellBlock.spells[spellIndex];
-    const updatedSpell: spellType = {
+    const updatedSpell: SpellType = {
       ...spellToUpdate,
       label: event.currentTarget.value
     };
@@ -68,7 +68,7 @@ export const Spells: React.FC = () => {
     const spellBlock = spells[blockIndex];
     const spellToUpdate = spellBlock.spells[spellIndex];
     const currentMemorised = spellToUpdate.memorised;
-    const updatedSpell: spellType = {
+    const updatedSpell: SpellType = {
       ...spellToUpdate,
       memorised: !currentMemorised
     };
@@ -78,7 +78,7 @@ export const Spells: React.FC = () => {
       ...spellBlock,
       spells: spellList
     };
-    const updatedSpells: spellsType = spells;
+    const updatedSpells: SpellsType = spells;
     updatedSpells[blockIndex] = newSpellBlock;
 
     setCharacter({
@@ -88,7 +88,7 @@ export const Spells: React.FC = () => {
   };
 
   const handleAddSpell = (blockIndex: number) => {
-    const emptySpell: spellType = {
+    const emptySpell: SpellType = {
       label: '',
       memorised: false
     };
@@ -99,7 +99,7 @@ export const Spells: React.FC = () => {
       ...spellBlock,
       spells: spellList
     };
-    const updatedSpells: spellsType = spells;
+    const updatedSpells: SpellsType = spells;
     updatedSpells[blockIndex] = newSpellBlock;
 
     setCharacter({
