@@ -30,23 +30,24 @@ const CloseButton = styled.div`
 
 const SaveModal = () => {
   const { character } = useContext(CharacterContext);
-  const { currentUser } = useAuth();
-  const nameRef = useRef();
+  // const { currentUser } = useAuth();
+  const nameRef = useRef<HTMLInputElement | null>(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async () => {
+    // event.preventDefault();
     try {
       setError('');
       setLoading(true);
-      const docRef = doc(db, 'characters', nameRef.current.value);
+      const id = nameRef.current?.value;
+      const docRef = doc(db, 'characters', id);
       const docToSave = {
         ...character,
-        userId: currentUser.uid
+        // userId: currentUser.uid
       };
-      delete docToSave.id;
+      // delete docToSave.id;
       await setDoc(docRef, docToSave);
     } catch (error) {
       console.error(error);
