@@ -1,7 +1,7 @@
 import { PersonaType, AbilitiesType, StatsType, SkillsType, TraitsType, SpellsType } from './';
 
 export type CharacterType = {
-  id: string;
+  id?: string;
   userId: string;
   persona: PersonaType;
   abilities: AbilitiesType;

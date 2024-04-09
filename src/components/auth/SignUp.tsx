@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { routes } from '../../constants';
+import { ROUTES } from '../../constants';
 import { useAuth } from '../../context/authContext';
 import {
   AuthBox,
@@ -35,6 +35,7 @@ const SignUp = () => {
       setLoading(true);
       await signUp(emailRef.current.value, passwordRef.current.value);
     } catch (error) {
+      console.log('error', error);
       setError('Failed to create account');
     }
     setLoading(false);
@@ -63,7 +64,7 @@ const SignUp = () => {
           </ThemeButton>
         </SubmitButtonWrapper>
         <CenterWrapper>
-          <Link to={routes.LOGIN}>Already have an account? Log In</Link>
+          <Link to={ROUTES.LOGIN}>Already have an account? Log In</Link>
         </CenterWrapper>
       </AuthBox>
     </ModalBackdrop>

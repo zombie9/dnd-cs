@@ -1,5 +1,5 @@
 import { doc, setDoc } from 'firebase/firestore';
-import React, { useContext, useState, useRef } from 'react';
+import { useContext, useState, useRef } from 'react';
 import { X } from 'react-bootstrap-icons';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -30,7 +30,7 @@ const CloseButton = styled.div`
 
 const SaveModal = () => {
   const { character } = useContext(CharacterContext);
-  // const { currentUser } = useAuth();
+  const { currentUser } = useAuth();
   const nameRef = useRef<HTMLInputElement | null>(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -45,9 +45,9 @@ const SaveModal = () => {
       const docRef = doc(db, 'characters', id);
       const docToSave = {
         ...character,
-        // userId: currentUser.uid
+        userId: currentUser?.uid || '1234567890'
       };
-      // delete docToSave.id;
+      delete docToSave.id;
       await setDoc(docRef, docToSave);
     } catch (error) {
       console.error(error);
