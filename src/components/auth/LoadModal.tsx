@@ -36,7 +36,7 @@ const CharacterButton = styled(ThemeButton)`
   min-width: 320px;
 `;
 
-const LoadModal = ({ closeModal }) => {
+const LoadModal = () => {
   const { setCharacter } = useContext(CharacterContext);
   const { currentUser } = useAuth();
   const { characterList, loading, error } = useFirebase(currentUser);
@@ -51,7 +51,7 @@ const LoadModal = ({ closeModal }) => {
   return (
     <ModalBackdrop>
       <AuthBox>
-        <CloseButton onClick={() => closeModal()}>
+        <CloseButton onClick={() => navigate('/')}>
           <X size={20} />
         </CloseButton>
         <Heading>L O A D</Heading>
