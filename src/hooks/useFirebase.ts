@@ -2,11 +2,12 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 
 import { db } from '../firebase';
+import { CharacterType } from '../types';
 
 export const useFirebase = (currentUser) => {
-  const [characterList, setCharacterList] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(null);
+  const [characterList, setCharacterList] = useState<CharacterType[] | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<string | null | boolean>(null);
 
   useEffect(() => {
     const fetchCharacter = async () => {
@@ -18,7 +19,7 @@ export const useFirebase = (currentUser) => {
         const collectionRef = await collection(db, 'characters');
         const getUserCharacters = query(collectionRef, where('userId', '==', currentUserId));
         const snap = await getDocs(getUserCharacters);
-        let list = [];
+        const list: CharacterType[] = [];
         snap.forEach((doc) => {
           list.push({
             id: doc.id,

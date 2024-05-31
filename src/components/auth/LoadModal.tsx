@@ -62,7 +62,7 @@ const LoadModal = ({ closeModal }) => {
             return (
               <CharacterRow key={char.id}>
                 <CharacterButton onClick={() => handleLoad(char.id)}>
-                  <code>{char.id.toUpperCase()}</code>
+                  <code>{char.id?.toUpperCase()}</code>
                 </CharacterButton>
               </CharacterRow>
             );

@@ -6,7 +6,7 @@ interface UseDarkModeReturn {
 }
 
 export const useDarkMode = (): UseDarkModeReturn => {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('dark');
 
   const setMode = (mode: string) => {
     window.localStorage.setItem('theme', mode);
@@ -14,6 +14,7 @@ export const useDarkMode = (): UseDarkModeReturn => {
   };
 
   const toggleTheme = () => {
+    console.log('theme', theme);
     theme === 'light' ? setMode('dark') : setMode('light');
   };
 

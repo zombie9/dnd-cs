@@ -56,6 +56,7 @@ const MenuBar = styled.div<MenuBarProps>`
 
 export const Header: React.FC<ThemeType> = ({ theme, toggleTheme }) => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
+
   return (
     <>
       <StyledHeader>

@@ -1,9 +1,5 @@
-import React from 'react';
 import styled from 'styled-components';
 
-import { ThemeType } from '../../types';
-
-import { Header } from './Header';
 import { Persona } from '../character/Persona';
 import { Abilities } from '../character/Abilities';
 import { Skills } from '../character/Skills';
@@ -28,13 +24,11 @@ const SpellGrid = styled.div`
   display: grid;
   grid-template-columns: 2fr 3fr 3fr;
   gap: 1rem;
-  margin-bottom: 1rem;
 `;
 
-export const Container: React.FC<ThemeType> = ({ theme, toggleTheme }) => {
+export const Container = () => {
   return (
     <>
-      <Header theme={theme} toggleTheme={toggleTheme} />
       <StyledContainer>
         <Persona />
         <Abilities />
@@ -47,6 +41,7 @@ export const Container: React.FC<ThemeType> = ({ theme, toggleTheme }) => {
           <Box />
           <Box />
         </SpellGrid>
+        <Box style={{ minHeight: '17rem' }} />
       </StyledContainer>
     </>
   );
