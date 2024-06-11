@@ -17,20 +17,22 @@ import {
 } from '../../styles/sharedStyles';
 
 const Login = () => {
-  const emailRef = useRef();
-  const passwordRef = useRef();
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { logIn } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
       setError('');
       setLoading(true);
-      await logIn(emailRef.current.value, passwordRef.current.value);
+      if (emailRef.current && passwordRef.current) {
+        await logIn(emailRef.current.value, passwordRef.current.value);
+      }
       navigate('/');
     } catch (error) {
       console.error(error);

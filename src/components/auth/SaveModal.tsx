@@ -42,6 +42,11 @@ const SaveModal = () => {
       setError('');
       setLoading(true);
       const id = nameRef.current?.value;
+      if (!id) {
+        setError('Name is required');
+        setLoading(false);
+        return;
+      }
       const docRef = doc(db, 'characters', id);
       const docToSave = {
         ...character,

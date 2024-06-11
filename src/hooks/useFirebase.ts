@@ -1,10 +1,17 @@
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
+import { User } from 'firebase/auth';
 
 import { db } from '../firebase';
 import { CharacterType } from '../types';
 
-export const useFirebase = (currentUser) => {
+export const useFirebase = (
+  currentUser: User
+): {
+  characterList: CharacterType[] | null;
+  loading: string | null | boolean;
+  error: string | null;
+} => {
   const [characterList, setCharacterList] = useState<CharacterType[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<string | null | boolean>(null);
@@ -21,10 +28,11 @@ export const useFirebase = (currentUser) => {
         const snap = await getDocs(getUserCharacters);
         const list: CharacterType[] = [];
         snap.forEach((doc) => {
-          list.push({
+          const char = {
             id: doc.id,
             ...doc.data()
-          });
+          } as CharacterType;
+          list.push(char);
         });
         if (list.length < 1) {
           setError('Could not retrieve any saved characters.');

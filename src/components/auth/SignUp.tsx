@@ -17,28 +17,29 @@ import {
 } from '../../styles/sharedStyles';
 
 const SignUp = () => {
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const passwordConfirmRef = useRef();
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+  const passwordConfirmRef = useRef<HTMLInputElement>(null);
 
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { signUp } = useAuth();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      return setError('Passwords did not match');
+  const handleSubmit = async () => {
+    if (emailRef.current && passwordRef.current && passwordConfirmRef.current) {
+      if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+        return setError('Passwords did not match');
+      }
+      try {
+        setError('');
+        setLoading(true);
+        await signUp(emailRef.current.value, passwordRef.current.value);
+      } catch (error) {
+        console.log('error', error);
+        setError('Failed to create account');
+      }
+      setLoading(false);
     }
-    try {
-      setError('');
-      setLoading(true);
-      await signUp(emailRef.current.value, passwordRef.current.value);
-    } catch (error) {
-      console.log('error', error);
-      setError('Failed to create account');
-    }
-    setLoading(false);
   };
 
   return (

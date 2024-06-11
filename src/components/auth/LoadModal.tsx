@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { X } from 'react-bootstrap-icons';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -15,6 +15,7 @@ import {
   ThemeButton
 } from '../../styles/sharedStyles';
 import { CharacterType } from '../../types';
+import { User } from 'firebase/auth';
 
 const CloseButton = styled.div`
   position: absolute;
@@ -39,12 +40,12 @@ const CharacterButton = styled(ThemeButton)`
 const LoadModal = () => {
   const { setCharacter } = useContext(CharacterContext);
   const { currentUser } = useAuth();
-  const { characterList, loading, error } = useFirebase(currentUser);
+  const { characterList, loading, error } = useFirebase(currentUser as User);
   const navigate = useNavigate();
 
   const handleLoad = (id: string) => {
-    const characterToLoad = characterList.find((char: CharacterType) => char.id === id);
-    setCharacter(characterToLoad);
+    const characterToLoad = characterList?.find((char: CharacterType) => char.id === id);
+    if (characterToLoad) setCharacter(characterToLoad);
     navigate('/');
   };
 
@@ -61,7 +62,7 @@ const LoadModal = () => {
           characterList.map((char: CharacterType) => {
             return (
               <CharacterRow key={char.id}>
-                <CharacterButton onClick={() => handleLoad(char.id)}>
+                <CharacterButton onClick={() => char.id && handleLoad(char.id)}>
                   <code>{char.id?.toUpperCase()}</code>
                 </CharacterButton>
               </CharacterRow>

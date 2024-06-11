@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../constants';
 import { useAuth } from '../../context/authContext';
 
-const PrivateRoute = ({ children }) => {
+const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { currentUser } = useAuth();
   const navigate = useNavigate();
 
