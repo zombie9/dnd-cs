@@ -12,7 +12,7 @@ const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => 
     if (!currentUser) {
       navigate(ROUTES.LOGIN);
     }
-  }, []);
+  }, [currentUser, navigate]);
   return <>{children}</>;
 };
 

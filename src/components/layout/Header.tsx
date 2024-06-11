@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { ThemeType } from '../../types';
@@ -6,6 +6,9 @@ import { ThemeType } from '../../types';
 import { MenuButton } from './MenuButton';
 import { NavButton } from './NavButton';
 import { ThemeToggle } from './ThemeToggle';
+import LogoutButton from '../auth/LogoutButton';
+import { useAuth } from '../../context/authContext';
+import { CharacterContext } from '../../context/context';
 
 interface MenuBarProps {
   open: boolean;
@@ -56,17 +59,30 @@ const MenuBar = styled.div<MenuBarProps>`
 
 export const Header: React.FC<ThemeType> = ({ theme, toggleTheme }) => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const { currentUser } = useAuth();
+  const { character } = useContext(CharacterContext);
+  const [heading, setHeading] = useState('C H A R A C T E R');
+
+  useEffect(() => {
+    if (currentUser && character) {
+      const characterName = character.persona.find((p) => p.label === 'name')?.value;
+      const formattedName =
+        characterName?.toUpperCase().split(' ')[0].split('').join(' ') || 'C H A R A C T E R';
+      setHeading(formattedName);
+    }
+  }, [currentUser, character]);
 
   return (
     <>
       <StyledHeader>
         <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
-        <code>C H A R A C T E R</code>
+        <code>{heading}</code>
         <MenuButton setMenuIsOpen={setMenuIsOpen} />
       </StyledHeader>
       <MenuBar open={menuIsOpen}>
         <NavButton text="SAVE" path="/save" setMenuIsOpen={setMenuIsOpen} />
         <NavButton text="LOAD" path="/load" setMenuIsOpen={setMenuIsOpen} />
+        <LogoutButton setMenuIsOpen={setMenuIsOpen} />
       </MenuBar>
     </>
   );
