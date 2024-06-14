@@ -15,7 +15,7 @@ const StyledContainer = styled.div`
 
 const SkillGrid = styled.div`
   display: grid;
-  grid-template-columns: 2fr 3fr 3fr;
+  grid-template-columns: 2fr 4fr 2fr;
   gap: 1rem;
   margin-bottom: 1rem;
 `;
