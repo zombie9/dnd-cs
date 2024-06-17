@@ -1,6 +1,7 @@
 import React, { useContext, useRef } from 'react';
-import { Upload } from 'react-bootstrap-icons';
+import { Upload, X } from 'react-bootstrap-icons';
 import { getDownloadURL, ref as storageRef, uploadBytes } from 'firebase/storage';
+import { v4 as uuid } from 'uuid';
 
 import { Box } from '../../styles/sharedStyles';
 import { storage } from '../../firebase';
@@ -8,6 +9,7 @@ import { storage } from '../../firebase';
 import styled from 'styled-components';
 
 import { CharacterContext } from '../../context/context';
+import { isValidUrl } from '../../utils/isValidUrl';
 
 const IntersectingLabel = styled.label`
   position: absolute;
@@ -27,6 +29,7 @@ const InputWrapper = styled.div`
 
 const TraitsBox = styled(Box)`
   margin-bottom: 0;
+  max-height: 18rem;
 `;
 
 const ProtraitBox = styled.div`
@@ -39,10 +42,26 @@ const ProtraitBox = styled.div`
   position: relative;
 `;
 
+const PortraitImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+`;
+
+const CloseButton = styled.div`
+  position: absolute;
+  top: 0.1rem;
+  right: 0.1rem;
+  cursor: pointer;
+  color: ${({ theme }) => theme.secondary};
+`;
+
 export const Traits: React.FC = () => {
   const { character, setCharacter } = useContext(CharacterContext);
   const hiddenFileInput = useRef(null);
   const { traits } = character;
+  const hasPortrait = traits[1].value && isValidUrl(traits[1].value);
 
   const handleClick = () => {
     if (!hiddenFileInput.current) return;
@@ -50,10 +69,49 @@ export const Traits: React.FC = () => {
     fileInput.click();
   };
 
+  const handleRemovePortrait = () => {
+    const traitsEntries = traits;
+    const traitToChange = traitsEntries[1];
+    const newTrait = {
+      ...traitToChange,
+      value: ''
+    };
+    traitsEntries[1] = newTrait;
+    setCharacter({
+      ...character,
+      traits: traitsEntries
+    });
+  };
+
   const handleUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) return;
     const fileUploaded = event.target.files[0];
     console.log('upload', fileUploaded.name);
+    const imageRef = storageRef(storage, `portraits/${uuid()}`);
+    uploadBytes(imageRef, fileUploaded)
+      .then((snapshot) => {
+        getDownloadURL(snapshot.ref)
+          .then((url) => {
+            console.log(url);
+            const traitsEntries = traits;
+            const traitToChange = traitsEntries[1];
+            const newTrait = {
+              ...traitToChange,
+              value: url
+            };
+            traitsEntries[1] = newTrait;
+            setCharacter({
+              ...character,
+              traits: traitsEntries
+            });
+          })
+          .catch((error) => {
+            console.error(error.message);
+          });
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
   };
 
   const handleChange = (event: React.FormEvent<HTMLTextAreaElement>, index: number) => {
@@ -69,6 +127,7 @@ export const Traits: React.FC = () => {
       ...character,
       traits: traitsEntries
     });
+    console.log('character.traits', character.traits);
   };
 
   return (
@@ -85,14 +144,25 @@ export const Traits: React.FC = () => {
       </TraitsBox>
       <TraitsBox>
         <ProtraitBox>
-          <IntersectingLabel>PORTRAIT</IntersectingLabel>
-          <Upload size={50} onClick={handleClick} />
-          <input
-            type="file"
-            onChange={handleUpload}
-            ref={hiddenFileInput}
-            style={{ display: 'none' }}
-          />
+          {/* <IntersectingLabel>PORTRAIT</IntersectingLabel> */}
+          {hasPortrait ? (
+            <>
+              <PortraitImage src={traits[1].value} alt="portrait" />{' '}
+              <CloseButton onClick={handleRemovePortrait}>
+                <X size={20} />
+              </CloseButton>
+            </>
+          ) : (
+            <>
+              <Upload size={50} onClick={handleClick} />
+              <input
+                type="file"
+                onChange={handleUpload}
+                ref={hiddenFileInput}
+                style={{ display: 'none' }}
+              />{' '}
+            </>
+          )}
         </ProtraitBox>
       </TraitsBox>
 
