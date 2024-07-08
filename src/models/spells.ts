@@ -1,6 +1,6 @@
-import { spellsType } from '../types/spellsType';
+import { SpellsType } from '../types/spellsType';
 
-export const SPELLS: spellsType = [
+export const SPELLS: SpellsType = [
   {
     level: 0,
     spells: [

@@ -4,15 +4,15 @@ export type TraitsType = [
     value: string;
   },
   {
-    label: 'personality traits';
+    label: 'portrait';
     value: string;
   },
   {
-    label: 'racial traits';
+    label: 'racial & class abilities';
     value: string;
   },
   {
-    label: 'class abilities';
+    label: 'languages';
     value: string;
   }
 ];
