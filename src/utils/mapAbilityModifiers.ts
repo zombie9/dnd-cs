@@ -41,8 +41,16 @@ export const mapAbilityModifiers = (ability: number) => {
       modifier = 4;
       break;
 
-    default:
+    case ability < 22:
       modifier = 5;
+      break;
+
+    case ability < 24:
+      modifier = 6;
+      break;
+
+    default:
+      modifier = 7;
   }
   return modifier;
 };
