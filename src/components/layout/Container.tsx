@@ -6,6 +6,8 @@ import { Skills } from '../character/Skills';
 import { Traits } from '../character/Traits';
 import { Spells } from '../character/Spells';
 import { Box } from '../../styles/sharedStyles';
+import { ClassAbilities } from '../character/ClassAbilities';
+import { OtherAbilities } from '../character/OtherAbilities';
 
 const StyledContainer = styled.div`
   margin: 0 auto;
@@ -27,6 +29,12 @@ const SpellGrid = styled.div`
   gap: 1rem;
 `;
 
+const EquipmentGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+`;
+
 export const Container = () => {
   return (
     <>
@@ -39,10 +47,13 @@ export const Container = () => {
         </SkillGrid>
         <SpellGrid>
           <Spells />
-          <Box />
-          <Box />
+          <ClassAbilities />
+          <OtherAbilities />
         </SpellGrid>
-        <Box style={{ minHeight: '17rem' }} />
+        <EquipmentGrid>
+          <Box style={{ minHeight: '17rem' }} />
+          <Box style={{ minHeight: '17rem' }} />
+        </EquipmentGrid>
       </StyledContainer>
     </>
   );

@@ -72,8 +72,15 @@ export const Header: React.FC<ThemeType> = ({ theme, toggleTheme }) => {
     }
   }, [currentUser, character]);
 
+  const handleMouseLeave = () => {
+    const closeMenu = setTimeout(() => {
+      setMenuIsOpen(false);
+    }, 1000);
+    return () => clearTimeout(closeMenu);
+  };
+
   return (
-    <>
+    <div onMouseLeave={handleMouseLeave}>
       <StyledHeader>
         <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
         <code>{heading}</code>
@@ -84,6 +91,6 @@ export const Header: React.FC<ThemeType> = ({ theme, toggleTheme }) => {
         <NavButton text="LOAD" path="/load" setMenuIsOpen={setMenuIsOpen} />
         <LogoutButton setMenuIsOpen={setMenuIsOpen} />
       </MenuBar>
-    </>
+    </div>
   );
 };

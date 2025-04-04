@@ -1,4 +1,16 @@
-import { PersonaType, AbilitiesType, StatsType, SkillsType, TraitsType, SpellsType } from './';
+import {
+  PersonaType,
+  AbilitiesType,
+  StatsType,
+  SkillsType,
+  TraitsType,
+  SpellsType,
+  ClassAbilitiesType,
+  ArmorAndWeaponsType,
+  OtherAbilitiesType,
+  EquipmentType,
+  NotesType
+} from './';
 
 export type CharacterType = {
   id?: string;
@@ -9,4 +21,9 @@ export type CharacterType = {
   skills: SkillsType;
   traits: TraitsType;
   spells: SpellsType;
+  classAbilities: ClassAbilitiesType;
+  otherAbilities: OtherAbilitiesType;
+  armorAndWeapons: ArmorAndWeaponsType;
+  equipment: EquipmentType;
+  notes: NotesType;
 };

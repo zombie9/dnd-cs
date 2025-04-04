@@ -8,7 +8,7 @@ export type TraitsType = [
     value: string;
   },
   {
-    label: 'racial & class abilities';
+    label: 'racial abilities';
     value: string;
   },
   {
