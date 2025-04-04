@@ -22,16 +22,16 @@ const IntersectingLabel = styled.label`
   background: ${({ theme }) => theme.panel};
 `;
 
-export const OtherAbilities: React.FC = () => {
+export const ArmorAndWeapons: React.FC = () => {
   const { character, setCharacter } = useContext(CharacterContext);
-  const { otherAbilities } = character;
+  const { armorAndWeapons } = character;
 
   const handleChange = (event: React.FormEvent<HTMLTextAreaElement>) => {
     const updatedValue = event.currentTarget.value;
-    const updatedField = { ...otherAbilities, value: updatedValue };
+    const updatedField = { ...armorAndWeapons, value: updatedValue };
     setCharacter({
       ...character,
-      otherAbilities: updatedField
+      armorAndWeapons: updatedField
     });
   };
 
@@ -40,10 +40,10 @@ export const OtherAbilities: React.FC = () => {
       <InputWrapper>
         <textarea
           spellCheck="false"
-          value={otherAbilities?.value}
+          value={armorAndWeapons?.value}
           onChange={(event) => handleChange(event)}
         />
-        <IntersectingLabel>{otherAbilities?.label.toUpperCase()}</IntersectingLabel>
+        <IntersectingLabel>{armorAndWeapons?.label.toUpperCase()}</IntersectingLabel>
       </InputWrapper>
     </Box>
   );

@@ -10,6 +10,9 @@ const InputWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+  textarea {
+    min-height: 27rem;
+  }
 `;
 
 const IntersectingLabel = styled.label`
@@ -22,16 +25,16 @@ const IntersectingLabel = styled.label`
   background: ${({ theme }) => theme.panel};
 `;
 
-export const OtherAbilities: React.FC = () => {
+export const Notes: React.FC = () => {
   const { character, setCharacter } = useContext(CharacterContext);
-  const { otherAbilities } = character;
+  const { notes } = character;
 
   const handleChange = (event: React.FormEvent<HTMLTextAreaElement>) => {
     const updatedValue = event.currentTarget.value;
-    const updatedField = { ...otherAbilities, value: updatedValue };
+    const updatedField = { ...notes, value: updatedValue };
     setCharacter({
       ...character,
-      otherAbilities: updatedField
+      notes: updatedField
     });
   };
 
@@ -40,10 +43,10 @@ export const OtherAbilities: React.FC = () => {
       <InputWrapper>
         <textarea
           spellCheck="false"
-          value={otherAbilities?.value}
+          value={notes?.value}
           onChange={(event) => handleChange(event)}
         />
-        <IntersectingLabel>{otherAbilities?.label.toUpperCase()}</IntersectingLabel>
+        <IntersectingLabel>{notes?.label.toUpperCase()}</IntersectingLabel>
       </InputWrapper>
     </Box>
   );

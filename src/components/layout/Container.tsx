@@ -5,9 +5,11 @@ import { Abilities } from '../character/Abilities';
 import { Skills } from '../character/Skills';
 import { Traits } from '../character/Traits';
 import { Spells } from '../character/Spells';
-import { Box } from '../../styles/sharedStyles';
 import { ClassAbilities } from '../character/ClassAbilities';
 import { OtherAbilities } from '../character/OtherAbilities';
+import { Equipment } from '../character/Equipment';
+import { ArmorAndWeapons } from '../character/ArmorAndWeapons';
+import { Notes } from '../character/Notes';
 
 const StyledContainer = styled.div`
   margin: 0 auto;
@@ -33,6 +35,7 @@ const EquipmentGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  min-height: 27rem;
 `;
 
 export const Container = () => {
@@ -51,9 +54,10 @@ export const Container = () => {
           <OtherAbilities />
         </SpellGrid>
         <EquipmentGrid>
-          <Box style={{ minHeight: '17rem' }} />
-          <Box style={{ minHeight: '17rem' }} />
+          <Equipment />
+          <ArmorAndWeapons />
         </EquipmentGrid>
+        <Notes />
       </StyledContainer>
     </>
   );
